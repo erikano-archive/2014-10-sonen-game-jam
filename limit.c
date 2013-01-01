@@ -25,20 +25,44 @@ int main (int argc, char* argv[])
 
   screenSurface = SDL_GetWindowSurface(window);
 
-  SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF));
+  // Intro
+  SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0x00, 0x00, 0x00));
   SDL_UpdateWindowSurface(window);
-
-  bool gameover = false;
-  // Game loop
-  while (!gameover)
+  SDL_Delay(125);
+  char i;
+  for (i = 0; i < 255 ; i++)
   {
+    SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, i, i, i));
+    SDL_UpdateWindowSurface(window);
+    SDL_Delay(10);
+  }
+
+  // Game loop
+  bool gameover = false;
+  bool quit = false;
+  SDL_Event e;
+  while (!(gameover || quit))
+  {
+    // Event loop
+    while(SDL_PollEvent(&e) != 0)
+    {
+      if(e.type == SDL_QUIT)
+      {
+        quit = true;
+      }
+    }
     SDL_Delay(10);
   }
 
   SDL_DestroyWindow(window);
   SDL_Quit();
 
-  fprintf(stderr, "Game over.\n");
+  if (gameover)
+  {
+    fprintf(stderr, "Game over.\n");
+    return EXIT_SUCCESS;
+  }
 
-  return EXIT_SUCCESS;
+  fprintf(stderr, "User abort.\n");
+  return EXIT_FAILURE;
 }
