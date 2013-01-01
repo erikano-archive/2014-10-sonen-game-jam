@@ -34,7 +34,7 @@ int main (int argc, char* argv[])
   {
     SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, i, i, i));
     SDL_UpdateWindowSurface(window);
-    SDL_Delay(10);
+    SDL_Delay(5);
   }
 
   // Game loop
@@ -51,7 +51,7 @@ int main (int argc, char* argv[])
         quit = true;
       }
     }
-    SDL_Delay(10);
+    SDL_Delay(5);
   }
 
   SDL_DestroyWindow(window);
