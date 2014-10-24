@@ -1,0 +1,1 @@
+mkdir bin; gcc -o bin/hello hello.c -lSDL2
