@@ -1,1 +1,1 @@
-mkdir bin; gcc -o bin/hello hello.c -lSDL2
+mkdir bin; gcc -o bin/limit limit.c -lSDL2

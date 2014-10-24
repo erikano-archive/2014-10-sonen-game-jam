@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 #include <SDL2/SDL.h>
 
 const int SCREEN_WIDTH = 640;
@@ -15,7 +16,7 @@ int main (int argc, char* argv[])
     exit(EXIT_FAILURE);
   }
 
-  window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+  window = SDL_CreateWindow("LIMIT -- Sonen Game Jam 2014, Team Erik", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
   if (window == NULL)
   {
     fprintf(stderr, "Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -27,10 +28,17 @@ int main (int argc, char* argv[])
   SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0xFF, 0xFF, 0xFF));
   SDL_UpdateWindowSurface(window);
 
-  SDL_Delay(2000);
+  bool gameover = false;
+  // Game loop
+  while (!gameover)
+  {
+    SDL_Delay(10);
+  }
 
   SDL_DestroyWindow(window);
   SDL_Quit();
+
+  fprintf(stderr, "Game over.\n");
 
   return EXIT_SUCCESS;
 }
