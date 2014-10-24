@@ -1,1 +1,16 @@
-mkdir bin; gcc -o bin/limit limit.c -lSDL2
+LIMIT
+-----
+
+Sonen Game Jam 2014
+
+Team Erik
+
+Dependencies
+============
+
+libsdl2
+
+Compiling
+=========
+
+Just run `make`.
