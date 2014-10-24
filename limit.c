@@ -5,7 +5,7 @@ typedef struct player_ {
   int health;
 } player;
 
-int level1 (player* player1)
+int level1 (player* player1, player* player2)
 {
   printf("\n  You are standing in a room.");
   printf("\n\n  A sly, female voice speaks in front of you:");
@@ -77,9 +77,9 @@ int main (int argc, char* argv[])
   player2.health = 100;
 
   bool made_it_through = true;
-  while (made_it_through && player1.health > 0)
+  while (made_it_through && player1.health > 0 && player2.health)
   {
-    made_it_through = level1(&player1);
+    made_it_through = level1(&player1, &player2);
   }
 
   if (player1.health <= 0)
