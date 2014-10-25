@@ -47,9 +47,10 @@ int level1 (SDL_Window* window, SDL_Surface* screenSurface, stats_level* stats_l
     printf("\n\n      Outside is nothing.");
     printf("\n\n        You leave this world");
     printf("\n");
-    sleep(15);
+    sleep(10);
     printf("\n          alive.");
     printf("\n");
+    sleep(5);
     (*stats_level1).error = EXIT_SUCCESS;
     return true;
   }
