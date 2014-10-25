@@ -1,4 +1,4 @@
-_OBJS = intro/2.o level/1.o level/2.o level/3.o level/4.o level/5.o outro.o main.o
+_OBJS = level/1.o intro/2.o level/2.o level/3.o level/4.o level/5.o outro/5.o main.o
 OBJS = $(patsubst %,obj/%,$(_OBJS))
 
 default: bin/limit
@@ -9,7 +9,7 @@ clean-bin/:
 	test -d bin && find bin/ -type f -exec rm {} \; || echo "No files to remove in bin/"
 	test -d bin && rmdir bin || echo "Directory has already been removed."
 
-clean-obj/: clean-obj/intro/ clean-obj/level/
+clean-obj/: clean-obj/intro/ clean-obj/level/ clean-obj/outro/
 	test -d obj && find obj/ -type f -exec rm {} \; || echo "No files to remove in obj/"
 	test -d obj && rmdir obj || echo "Directory has already been removed."
 
@@ -21,7 +21,11 @@ clean-obj/level/:
 	test -d obj/level/ && find obj/level/ -type f -exec rm {} \; || echo "No files to remove in obj/"
 	test -d obj/level/ && rmdir obj/level/ || echo "Directory has already been removed."
 
-bin/limit: obj/intro/ obj/level/ $(OBJS) bin/
+clean-obj/outro/:
+	test -d obj/outro/ && find obj/outro/ -type f -exec rm {} \; || echo "No files to remove in obj/"
+	test -d obj/outro/ && rmdir obj/outro/ || echo "Directory has already been removed."
+
+bin/limit: obj/intro/ obj/level/ obj/outro/ $(OBJS) bin/
 	gcc -o $@ $(OBJS) -L/usr/local/lib -Wl,-rpath=/usr/local/lib -lSDL2
 
 obj/%.o: src/%.c
@@ -38,3 +42,6 @@ obj/intro/: obj/
 
 obj/level/: obj/
 	test -d obj/level/ || mkdir obj/level/
+
+obj/outro/: obj/
+	test -d obj/outro/ || mkdir obj/outro/
