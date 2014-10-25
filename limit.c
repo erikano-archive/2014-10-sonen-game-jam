@@ -59,8 +59,7 @@ int level1 (stats_level* stats_level1, player* player1, player* player2)
   {
     printf("\n  The voice now whips your ears:");
     printf("\n\n    MIND YOUR INPUT!");
-    printf("\n");
-    printf("\n      Your life force is sucked out.");
+    printf("\n\n      Your life force is sucked out.");
     printf("\n");
     sleep(10);
     (*player1).health = 0;
