@@ -170,6 +170,7 @@ int main (int argc, char* argv[])
         }
       }
       SDL_Delay(5);
+      gameover = true;
     }
   }
   if (stats_level_current.error != EXIT_FAILURE)
