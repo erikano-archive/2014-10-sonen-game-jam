@@ -9,6 +9,11 @@ We were given 48 hours (actually 49 hours because of Daylight Savings Time).
 
 This game is unfinished.
 
+Updates
+-------
+
+Note that being a game jam entry, no further commits will be pushed to this repository after the deadline. If you wish to see it further developed, look for a fork (like the one I'll be making after the game jam; [erikano/alive](https://github.com/erikano/alive)) or create a fork of it yourself.
+
 Dependencies
 ------------
 
