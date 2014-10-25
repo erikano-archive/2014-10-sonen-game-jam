@@ -2,12 +2,12 @@
 #include <stdbool.h>
 #include <SDL2/SDL.h>
 
-#include "game.h"
-#include "level.h"
-#include "player.h"
+#include "cgame.h"
+#include "slevel.h"
+#include "splayer.h"
 
 // Level 2, black and white graphics, letter "I"
-int level2 (stats_level* stats_level2, player* player1)
+bool level2 (stats_level* stats_level2, player* player1, player* player2)
 {
   if (SDL_Init(SDL_INIT_VIDEO) < 0 )
   {

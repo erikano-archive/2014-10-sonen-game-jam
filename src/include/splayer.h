@@ -1,5 +1,5 @@
-#ifndef PLAYER_H_
-#define PLAYER_H_
+#ifndef SPLAYER_H_
+#define SPLAYER_H_
 
 typedef struct {
   int health;

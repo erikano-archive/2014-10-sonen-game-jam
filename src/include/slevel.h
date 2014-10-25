@@ -1,5 +1,5 @@
-#ifndef LEVEL_H_
-#define LEVEL_H_
+#ifndef SLEVEL_H_
+#define SLEVEL_H_
 
 typedef struct {
   int error;

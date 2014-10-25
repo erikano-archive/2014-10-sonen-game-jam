@@ -1,13 +1,14 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <SDL2/SDL.h>
 
-#include "game.h"
-#include "level.h"
-#include "player.h"
+#include "cgame.h"
+#include "slevel.h"
+#include "splayer.h"
 
 // Level 1, text mode, letter "L"
-int level1 (stats_level* stats_level1, player* player1)
+bool level1 (stats_level* stats_level1, player* player1, player* player2)
 {
   printf("\n  You are standing in a room.");
   printf("\n\n  A sly, female voice speaks in front of you:");
