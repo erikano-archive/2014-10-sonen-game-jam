@@ -1,9 +1,11 @@
 LIMIT
 =====
 
-Sonen Game Jam, October 2014
+[Sonen Game Jam](http://sonengamejam.org/), October 2014
 
 Team Erik
+
+We were given 48 hours (actually 49 hours because of Daylight Savings Time).
 
 This game is unfinished.
 
