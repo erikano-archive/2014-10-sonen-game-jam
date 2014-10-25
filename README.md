@@ -3,7 +3,7 @@ LIMIT
 
 [Sonen Game Jam](http://sonengamejam.org/), October 2014
 
-Team Erik
+Team Erik (of which I am the only member)
 
 We were given 48 hours (actually 49 hours because of Daylight Savings Time).
 
