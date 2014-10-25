@@ -34,9 +34,10 @@ int level1 (SDL_Window* window, SDL_Surface* screenSurface, stats_level* stats_l
     printf("\n\n              I didn't mean to...");
     printf("\n");
     (*player1).health = 0;
-    sleep(15);
+    sleep(10);
     printf("\n            You die.");
     printf("\n");
+    sleep(5);
     (*stats_level1).error = EXIT_SUCCESS;
     return false;
   }
@@ -59,11 +60,12 @@ int level1 (SDL_Window* window, SDL_Surface* screenSurface, stats_level* stats_l
     printf("\n  The voice now whips your ears:");
     printf("\n\n    MIND YOUR INPUT!");
     printf("\n");
-    sleep(15);
-    (*player1).health = 0;
     printf("\n      Your life force is sucked out.");
+    sleep(10);
+    (*player1).health = 0;
     printf("\n\n        You die.");
     printf("\n");
+    sleep(5);
     (*stats_level1).error = EXIT_SUCCESS;
     return false;
   }
