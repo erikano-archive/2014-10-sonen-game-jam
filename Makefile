@@ -1,4 +1,4 @@
-_OBJS = intro/2.o level/1.o level/2.o main.o
+_OBJS = intro/2.o level/1.o level/2.o level/3.o level/4.o level/5.o outro.o main.o
 OBJS = $(patsubst %,obj/%,$(_OBJS))
 
 default: bin/limit
