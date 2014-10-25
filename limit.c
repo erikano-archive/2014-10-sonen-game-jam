@@ -61,9 +61,10 @@ int level1 (SDL_Window* window, SDL_Surface* screenSurface, stats_level* stats_l
     printf("\n\n    MIND YOUR INPUT!");
     printf("\n");
     printf("\n      Your life force is sucked out.");
+    printf("\n");
     sleep(10);
     (*player1).health = 0;
-    printf("\n\n        You die.");
+    printf("\n        You die.");
     printf("\n");
     sleep(5);
     (*stats_level1).error = EXIT_SUCCESS;
