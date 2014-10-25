@@ -14,7 +14,7 @@ typedef struct stats_level_ {
 } stats_level;
 
 // "L" -- text mode
-int level1 (SDL_Window* window, SDL_Surface* screenSurface, stats_level* stats_level1, player* player1, player* player2)
+int level1 (stats_level* stats_level1, player* player1, player* player2)
 {
   printf("\n  You are standing in a room.");
   printf("\n\n  A sly, female voice speaks in front of you:");
@@ -72,7 +72,7 @@ int level1 (SDL_Window* window, SDL_Surface* screenSurface, stats_level* stats_l
   }
 }
 
-int intro (SDL_Window* window, SDL_Surface* screenSurface, stats_level* stats_intro, player* player1, player* player2)
+int intro (stats_level* stats_intro, player* player1, player* player2)
 {
   if (SDL_Init(SDL_INIT_VIDEO) < 0 )
   {
@@ -81,8 +81,7 @@ int intro (SDL_Window* window, SDL_Surface* screenSurface, stats_level* stats_in
     (*stats_intro).error = EXIT_FAILURE;
     return false;
   }
-
-  window = SDL_CreateWindow("LIMIT -- Sonen Game Jam 2014, Team Erik", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+  SDL_Window* window = SDL_CreateWindow("LIMIT -- Sonen Game Jam 2014, Team Erik", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
   if (window == NULL)
   {
     fprintf(stderr, "Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -90,8 +89,7 @@ int intro (SDL_Window* window, SDL_Surface* screenSurface, stats_level* stats_in
     (*stats_intro).error = EXIT_FAILURE;
     return false;
   }
-
-  screenSurface = SDL_GetWindowSurface(window);
+  SDL_Surface* screenSurface = SDL_GetWindowSurface(window);
 
   SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0x00, 0x00, 0x00));
   SDL_UpdateWindowSurface(window);
@@ -105,12 +103,41 @@ int intro (SDL_Window* window, SDL_Surface* screenSurface, stats_level* stats_in
   }
 
   (*stats_intro).error = EXIT_SUCCESS;
+  SDL_DestroyWindow(window);
+  SDL_Quit();
   return true;
 }
 
 // "I" -- black and white
-int level2 (SDL_Window* window, SDL_Surface* screenSurface, stats_level* stats_intro, player* player1, player* player2)
+int level2 (stats_level* stats_level2, player* player1, player* player2)
 {
+  if (SDL_Init(SDL_INIT_VIDEO) < 0 )
+  {
+    fprintf(stderr, "SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+    (*player1).health = 0;
+    (*stats_level2).error = EXIT_FAILURE;
+    return false;
+  }
+  SDL_Window* window = SDL_CreateWindow("LIMIT -- Sonen Game Jam 2014, Team Erik", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+  if (window == NULL)
+  {
+    fprintf(stderr, "Window could not be created! SDL_Error: %s\n", SDL_GetError());
+    (*player1).health = 0;
+    (*stats_level2).error = EXIT_FAILURE;
+    return false;
+  }
+  SDL_Surface* screenSurface = SDL_GetWindowSurface(window);
+
+  // Load media
+  SDL_Surface* sprite_player1 = SDL_LoadBMP("sprites/export/player1_bw.bmp");
+  SDL_Surface* sprite_player2 = SDL_LoadBMP("sprites/export/player2_bw.bmp");
+  if (sprite_player1 == NULL || sprite_player2 == NULL)
+  {
+    fprintf(stderr, "One or more sprites failed to load.\n");
+    (*stats_level2).error = EXIT_FAILURE;
+    return false;
+  }
+
   // Game loop
   bool gameover = false;
   bool quit = false;
@@ -124,13 +151,22 @@ int level2 (SDL_Window* window, SDL_Surface* screenSurface, stats_level* stats_i
       {
         fprintf(stderr, "\n  User abort.");
         fprintf(stderr, "\n\n    GAME OVER.\n");
-        stats_level_current.error = EXIT_FAILURE;
+        (*stats_level2).error = EXIT_FAILURE;
         quit = true;
       }
     }
-    SDL_Delay(5);
+    SDL_BlitSurface(sprite_player1, NULL, screenSurface, NULL);
+    SDL_UpdateWindowSurface(window);
+    SDL_Delay(5000);
     gameover = true;
   }
+
+  SDL_FreeSurface(sprite_player1);
+  SDL_FreeSurface(sprite_player2);
+  SDL_DestroyWindow(window);
+  SDL_Quit();
+  (*stats_level2).error = EXIT_SUCCESS;
+  return true;
 }
 
 // "M" - greyscale and sound
@@ -162,20 +198,17 @@ int main (int argc, char* argv[])
   player player1;
   player1.health = 100;
 
-  SDL_Window* window = NULL;
-  SDL_Surface* screenSurface = NULL;
-
   player player2;
   player2.health = 100;
 
-  bool made_it_through = level1(window, screenSurface, &stats_level_current, &player1, &player2);
+  bool made_it_through = level1(&stats_level_current, &player1, &player2);
   if (made_it_through && player1.health > 0 && player2.health > 0)
   {
-    made_it_through = intro(window, screenSurface, &stats_level_current, &player1, &player2);
+    made_it_through = intro(&stats_level_current, &player1, &player2);
   }
   if (made_it_through && player1.health > 0 && player2.health > 0)
   {
-    made_it_through = level2(window, screenSurface, &stats_level_current, &player1, &player2);
+    made_it_through = level2(&stats_level_current, &player1, &player2);
   }
   if (stats_level_current.error != EXIT_FAILURE)
   {
@@ -192,9 +225,6 @@ int main (int argc, char* argv[])
     }
     printf("\n\n");
   }
-
-  SDL_DestroyWindow(window);
-  SDL_Quit();
 
   if (stats_level_current.error == EXIT_FAILURE)
   {
