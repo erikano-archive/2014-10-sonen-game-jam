@@ -1,7 +1,7 @@
 LIMIT
 =====
 
-Sonen Game Jam 2014
+Sonen Game Jam, October 2014
 
 Team Erik
 
