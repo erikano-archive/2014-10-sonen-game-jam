@@ -109,6 +109,29 @@ int intro (SDL_Window* window, SDL_Surface* screenSurface, stats_level* stats_in
 }
 
 // "I" -- black and white
+int level2 (SDL_Window* window, SDL_Surface* screenSurface, stats_level* stats_intro, player* player1, player* player2)
+{
+  // Game loop
+  bool gameover = false;
+  bool quit = false;
+  SDL_Event e;
+  while (!(gameover || quit))
+  {
+    // Event loop
+    while(SDL_PollEvent(&e) != 0)
+    {
+      if(e.type == SDL_QUIT)
+      {
+        fprintf(stderr, "\n  User abort.");
+        fprintf(stderr, "\n\n    GAME OVER.\n");
+        stats_level_current.error = EXIT_FAILURE;
+        quit = true;
+      }
+    }
+    SDL_Delay(5);
+    gameover = true;
+  }
+}
 
 // "M" - greyscale and sound
 
@@ -152,26 +175,7 @@ int main (int argc, char* argv[])
   }
   if (made_it_through && player1.health > 0 && player2.health > 0)
   {
-    // Game loop
-    bool gameover = false;
-    bool quit = false;
-    SDL_Event e;
-    while (!(gameover || quit))
-    {
-      // Event loop
-      while(SDL_PollEvent(&e) != 0)
-      {
-        if(e.type == SDL_QUIT)
-        {
-          fprintf(stderr, "\n  User abort.");
-          fprintf(stderr, "\n\n    GAME OVER.\n");
-          stats_level_current.error = EXIT_FAILURE;
-          quit = true;
-        }
-      }
-      SDL_Delay(5);
-      gameover = true;
-    }
+    made_it_through = level2(window, screenSurface, &stats_level_current, &player1, &player2);
   }
   if (stats_level_current.error != EXIT_FAILURE)
   {
