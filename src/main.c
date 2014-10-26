@@ -40,16 +40,20 @@ int main (int argc, char* argv[])
       {
         if (player1.health <= 0)
         {
-          printf("\n  Dead people don't play games.");
-          printf("\n\n    GAME OVER.");
+          printf("\n  Dead people don't play games.\n");
+          sleep(1);
+          printf("\n    GAME OVER.");
         }
         else
         {
-          printf("\n  You survived.");
-          printf("\n\n    Mere survival is not sufficient.");
-          printf("\n\n      GAME OVER.");
+          printf("\n  You survived.\n");
+          sleep(1);
+          printf("\n    Mere survival is not sufficient.\n");
+          sleep(1);
+          printf("\n      GAME OVER.");
         }
         printf("\n\n");
+        sleep(1);
         return EXIT_SUCCESS;
       }
     }
