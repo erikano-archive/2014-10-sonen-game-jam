@@ -26,8 +26,8 @@ bool intro2 (stats_level* stats_intro, player* player1, player* player2)
   SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0x00, 0x00, 0x00));
   SDL_UpdateWindowSurface(window);
   SDL_Delay(125);
-  char i;
-  for (i = 0; i < 255 ; i++)
+  int i;
+  for (i = 0; i < 255 ; i += 4)
   {
     SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, i, i, i));
     SDL_UpdateWindowSurface(window);
