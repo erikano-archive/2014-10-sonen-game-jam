@@ -27,4 +27,6 @@ Compiling
 Running
 -------
 
+For the ultimate experience on your Raspbian-running Raspberry Pi, first disable X, then, as root (e.g. using `sudo`) run `dpkg-reconfigure console-setup`, picking font `terminus` and, probably, depending on your monitor, the largest font-size possible. You might need to reboot.
+
 `./bin/limit`
