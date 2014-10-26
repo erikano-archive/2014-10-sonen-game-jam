@@ -23,26 +23,26 @@ bool level1 (stats_level* stats_level1, player* player1, player* player2)
     printf("\n  As you open your eyes to look, from your left comes a terrible shriek;\n");
     printf("\n    NO! [L]EAVE!\n");
     sleep(1);
-    printf("\n      Your eardrums shatter.\n");
+    printf("\n  Your eardrums shatter.\n");
     sleep(1);
-    printf("\n        You fall to the ground.\n");
+    printf("\n    You fall to the ground.\n");
     sleep(1);
-    printf("\n          You hit your head on a sharp object.\n");
+    printf("\n      You hit your head on a sharp object.\n");
     sleep(1);
-    printf("\n            Still from your left, you hear a sobbing voice:\n");
+    printf("\n        Still from your left, you hear a sobbing voice:\n");
     sleep(1);
-    printf("\n              I didn't mean to...\n\n");
+    printf("\n          I didn't mean to...\n\n");
     sleep(1);
-    fprintf(stderr, "                ");
+    fprintf(stderr, "            ");
     for (i = 0 ; i < 3 ; i++)
     {
       fprintf(stderr, ".");
       sleep(1);
     }
     (*player1).health = 0;
-    printf("\n\n            You die.\n");
+    printf("\n\n        You die.\n");
     sleep(1);
-    fprintf(stderr, "\n              ");
+    fprintf(stderr, "\n          ");
     for (i = 0 ; i < 3 ; i++)
     {
       fprintf(stderr, ".");
