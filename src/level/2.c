@@ -37,10 +37,11 @@ bool level2 (stats_level* stats_level2, player* player1, player* player2)
   }
 
   // Game loop
+  bool made_it_through = false;
   bool gameover = false;
   bool quit = false;
   SDL_Event e;
-  while (!(gameover || quit))
+  while (!(made_it_through || gameover || quit))
   {
     // Event loop
     while(SDL_PollEvent(&e) != 0)
@@ -52,11 +53,22 @@ bool level2 (stats_level* stats_level2, player* player1, player* player2)
         (*stats_level2).error = EXIT_FAILURE;
         quit = true;
       }
+      else if(e.type == SDL_KEYDOWN)
+      {
+        switch(e.key.keysym.sym)
+        {
+          default:
+            fprintf(stderr, "\n  There's that evil voice again. It shouts:");
+            fprintf(stderr, "\n\n    I CAN NOT ALLOW YOU TO DO THAT!");
+            fprintf(stderr, "\n\n      You are thrown out of this world.\n");
+            (*stats_level2).error = EXIT_SUCCESS;
+            gameover = true;
+            break;
+        }
+      }
     }
     SDL_BlitSurface(sprite_player1, NULL, screenSurface, NULL);
     SDL_UpdateWindowSurface(window);
-    SDL_Delay(5000);
-    gameover = true;
   }
 
   SDL_FreeSurface(sprite_player1);
@@ -64,5 +76,5 @@ bool level2 (stats_level* stats_level2, player* player1, player* player2)
   SDL_DestroyWindow(window);
   SDL_Quit();
   (*stats_level2).error = EXIT_SUCCESS;
-  return true;
+  return made_it_through;
 }
