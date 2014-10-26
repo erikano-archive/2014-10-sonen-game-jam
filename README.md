@@ -12,7 +12,7 @@ This game is not very playable in its current state.
 Screenshot
 ----------
 
-![Screenshot](raw/master/screenshot.png)
+![Screenshot](screenshot.png)
 
 Updates
 -------
