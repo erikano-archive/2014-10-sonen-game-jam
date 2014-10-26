@@ -9,6 +9,11 @@ We were given 48 hours (actually 49 hours because of Daylight Savings Time).
 
 This game is not very playable in its current state.
 
+Screenshot
+----------
+
+![Screenshot](raw/master/screenshot.png)
+
 Updates
 -------
 
