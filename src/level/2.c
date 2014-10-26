@@ -60,9 +60,7 @@ bool level2 (stats_level* stats_level2, player* player1, player* player2)
           default:
             fprintf(stderr, "\n  There's that creepy voice again. It shouts:\n ");
             fprintf(stderr, "\n    I CAN NOT ALLOW YOU TO DO THAT!\n");
-            sleep(1);
             fprintf(stderr, "\n      You are thrown out of this world.\n");
-            sleep(1);
             (*stats_level2).error = EXIT_SUCCESS;
             gameover = true;
             break;
